@@ -8,14 +8,14 @@
 import os,openpyxl,datetime,time
 
 #读取进度表及分级情况
-form_nm=openpyxl.load_workbook('卫生监督进度V6.0.xlsx',data_only=True)
+form_nm=openpyxl.load_workbook('00卫生监督、病媒生物进度V6.0.xlsx',data_only=True)
 sht1=form_nm['卫生监督进度表']
 
 #将co作为列表，co的每一项嵌套一个子列表，一个子列表为卫生监督进度表的一个单位的条目
 r=3
 i=0
 co=[]
-while sht1.cell(r,1).value != '水站':
+while sht1.cell(r,1).value != None:
   co.append([])
   co[i].append(sht1.cell(r,1).value)
   co[i].append(sht1.cell(r,2).value)
@@ -57,7 +57,7 @@ for co_i in range(0,len(co)):
 r=3
 i=0
 co=[]
-while sht1.cell(r,1).value != '水站':
+while sht1.cell(r,1).value != None:
   co.append([])
   co[i].append(sht1.cell(r,1).value)
   co[i].append(sht1.cell(r,2).value)
@@ -80,7 +80,7 @@ for co_i in range(0,len(co)):
   elif co[co_i][cur_mm+2]==None:
     co_i_todo.append(co_i)
 
-print('本月食品生产、销售、餐饮单位卫生监督情况如下：')
+print('本月卫生监督情况如下：')
 print('不必监管：')
 for i in co_i_nottodo:
   print(co[i][0])
